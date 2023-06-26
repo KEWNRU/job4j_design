@@ -3,6 +3,7 @@ package ru.job4j.assertj;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.withPrecision;
 
 class BoxTest {
     @Test
@@ -53,11 +54,17 @@ class BoxTest {
         boolean rsl = box.isExist();
         assertThat(rsl).isFalse();
     }
-
     @Test
     void intGetArea() {
         Box box = new Box(4, 10);
         int rsl = (int) box.getArea();
         assertThat(rsl).isEqualTo(173);
+    }
+
+    @Test
+    void doubleGetArea() {
+        Box box = new Box(4, 10);
+        double rsl = box.getArea();
+        assertThat(rsl).isEqualTo(173.20, withPrecision(0.05d));
     }
 }
