@@ -21,6 +21,14 @@ class NameLoadTest {
     }
 
     @Test
+    void checkSymbolStartsWith() {
+        NameLoad nameLoad = new NameLoad();
+        assertThatThrownBy(() -> nameLoad.parse("=Ivan"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("does not contain a key");
+    }
+
+    @Test
     void checkSymbolEquals() {
         NameLoad nameLoad = new NameLoad();
         assertThatThrownBy(() -> nameLoad.parse("Ivan="))
