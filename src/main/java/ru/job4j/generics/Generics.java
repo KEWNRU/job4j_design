@@ -14,9 +14,9 @@ public class Generics {
         second.add(new Predator());
         third.add(new Tiger());
 
-        /*generics.printObject(first);
+        generics.printObject(first);
         generics.printObject(second);
-        generics.printObject(third);*/
+        generics.printObject(third);
         System.out.println();
 
         /*generics.printBoundedWildCard(first);*/
