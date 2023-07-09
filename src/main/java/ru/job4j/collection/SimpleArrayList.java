@@ -77,12 +77,8 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         };
     }
     /** Увелечение массива */
-    public T[] grow() {
-        if (container.length == 0) {
-            container = Arrays.copyOf(container, container.length + 2);
-        } else {
-            container = Arrays.copyOf(container, container.length * 2);
-        }
-        return container;
+    private void grow() {
+        container = container.length == 0 ? (T[]) new Object[2]
+                : Arrays.copyOf(container, container.length * 2);
     }
 }
