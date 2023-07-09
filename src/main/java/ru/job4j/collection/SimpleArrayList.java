@@ -12,43 +12,39 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         container = (T[]) new Object[capacity];
     }
 
-    //Проверяем что длина масива равно размеру
-    //Копируем старый масив и увеличиваем новый
-    //Увеличиваем размер и счетчик
+/** Добавляем элемент в коллекцию  и увеличиваем раземер масива */
     @Override
     public void add(T value) {
-        if (container.length == size) {
-            container = grow();
+        if (container.length <= size) {
+            grow();
         }
-        size++;
+        container[size++] = value;
         modCount++;
     }
 
-    // Находим элемент по индексу и меняем его
-    // В противном случае выкидываем исключение
+    /** Изминение элемента по индексу */
     @Override
     public T set(int index, T newValue) {
-        Objects.checkIndex(index, container.length);
         T old = get(index);
         container[index] = newValue;
         return old;
     }
 
+    /** Удаление элемента по индексу */
     @Override
     public T remove(int index) {
-        Objects.checkIndex(index, container.length);
         T old = get(index);
-        System.arraycopy(container, index + 1, container, index, container.length - index - 1);
-        container[size - 1] = null;
+        System.arraycopy(container, index + 1, container, index, container.length - 1 - index);
+        container[container.length - 1] = null;
         size--;
         modCount++;
         return old;
     }
 
-    //Ищем элемент по индексу в противном случае выкидываем исключение
+    /** Поиск элемента по индексу*/
     @Override
     public T get(int index) {
-        Objects.checkIndex(index, container.length);
+        Objects.checkIndex(index, size);
         return container[index];
     }
 
@@ -61,7 +57,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     public Iterator<T> iterator() {
         return new Iterator<T>() {
             int point = 0;
-            final int exprctionModCount = modCount;
+            int exprctionModCount = modCount;
 
             @Override
             public boolean hasNext() {
@@ -80,9 +76,13 @@ public class SimpleArrayList<T> implements SimpleList<T> {
             }
         };
     }
+    /** Увелечение массива */
     public T[] grow() {
-        return container.length == 0 ? Arrays.copyOf(
-                container, container.length + 2)
-                : Arrays.copyOf(container, container.length * 2);
+        if (container.length == 0) {
+            container = Arrays.copyOf(container, container.length + 2);
+        } else {
+            container = Arrays.copyOf(container, container.length * 2);
+        }
+        return container;
     }
 }
