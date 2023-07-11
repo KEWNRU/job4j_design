@@ -12,6 +12,7 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
 
     @Override
     public void add(E value) {
+
     }
 
     @Override
