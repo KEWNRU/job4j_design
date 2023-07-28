@@ -37,8 +37,8 @@ public class User {
     public static void main(String[] args) {
         Map<User, Object> map = new HashMap<>(16);
         Calendar birthday = Calendar.getInstance();
-        User user1 = new User("Ivan", 21, birthday);
-        User user2 = new User("Natalya", 16, birthday);
+        User user1 = new User("Ivan", 16, birthday);
+        User user2 = new User("Ivan", 16, birthday);
         int hashCode1 = user1.hashCode();
         int hash1 = hashCode1 ^ (hashCode1 >>> 16);
         int bucket1 = hash1 & 15;
