@@ -23,6 +23,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public boolean put(K key, V value) {
         boolean rsl = false;
         if (count >= capacity * LOAD_FACTOR) {
+            capacity *= 2;
             expand();
         }
         int hashCodeKey = hash(Objects.hashCode(key));
@@ -37,7 +38,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private int hash(int hashCode) {
-        return hashCode ^ (hashCode >>> 8);
+        return hashCode ^ (hashCode >>> 16);
     }
 
     private int indexFor(int hash) {
@@ -49,9 +50,6 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private void expand() {
-        if (count >= table.length * LOAD_FACTOR) {
-            capacity *= 2;
-        }
         MapEntry<K, V>[] newTable = new MapEntry[capacity];
         for (MapEntry<K, V> map : table) {
             if (map != null) {
@@ -66,6 +64,9 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public V get(K key) {
         V value = null;
         int index = key == null ? 0 : indexFor(hash(key.hashCode()));
+        if (key != null) {
+           Objects.equals(key, null);
+        }
         if (table[index] != null && table[index].key == key) {
             value = table[index].value;
         }
@@ -76,6 +77,9 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public boolean remove(K key) {
         boolean rsl = false;
         int index = key == null ? 0 : indexFor(hash(key.hashCode()));
+        if (key != null) {
+            Objects.equals(key, null);
+        }
         if (table[index] != null) {
             table[index] = null;
             rsl = true;
