@@ -29,5 +29,4 @@ public class Analize {
         result.setDeleted(map.size());
         return result;
     }
-
 }
