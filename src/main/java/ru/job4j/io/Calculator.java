@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class Calculator {
     public static void main(String[] args) {
@@ -18,7 +19,7 @@ public class Calculator {
             out.write(System.lineSeparator().getBytes());
             out.write((String.valueOf(fourTimeTwo)).getBytes());
             out.write(System.lineSeparator().getBytes());
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
