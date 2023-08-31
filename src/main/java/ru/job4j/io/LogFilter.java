@@ -1,8 +1,6 @@
 package ru.job4j.io;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,14 +18,22 @@ public class LogFilter {
             rsl = data.lines()
                     .filter(line -> line.contains(" 404 "))
                     .collect(Collectors.toList());
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return rsl;
     }
 
+    public void saveTo(String out) {
+        var data = filter();
+        try (PrintWriter pw = new PrintWriter(new BufferedOutputStream(new FileOutputStream(out)))) {
+            data.forEach(pw::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
-        LogFilter logFilter = new LogFilter("data/log.txt");
-        logFilter.filter().forEach(System.out::println);
+        new LogFilter("data/log.txt").saveTo("data/404.txt");
     }
 }
