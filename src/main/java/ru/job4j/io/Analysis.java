@@ -11,8 +11,8 @@ public class Analysis {
                 String line = read.readLine();
                 if (server == (line.startsWith("200") || line.startsWith("300"))) {
                     server = !server;
-                    writer.write(server ? System.lineSeparator() : ";");
                     writer.write(line.substring(4));
+                    writer.write(server ? ";" : System.lineSeparator());
                 }
             }
         } catch (IOException e) {
