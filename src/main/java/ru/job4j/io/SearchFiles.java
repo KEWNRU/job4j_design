@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import static java.nio.file.FileVisitResult.CONTINUE;
 public class SearchFiles extends SimpleFileVisitor<Path> {
-    Predicate<Path> condition;
-    List<Path> pathList = new ArrayList<>();
+    private Predicate<Path> condition;
+    private List<Path> pathList = new ArrayList<>();
 
     public SearchFiles(Predicate<Path> condition) {
         this.condition = condition;
