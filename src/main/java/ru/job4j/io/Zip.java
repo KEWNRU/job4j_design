@@ -37,22 +37,13 @@ public class Zip {
     }
 
     public static void main(String[] args) throws IOException {
-        String[] direct = args[0].split("=", 2);
-        String[] exclude = args[1].split("=", 2);
-        String[] output = args[2].split("=", 2);
-        if (direct[1].isEmpty()) {
-            throw new IllegalArgumentException("Directory not found");
-        }
-        if (exclude[1].isEmpty()) {
-            throw  new IllegalArgumentException("Exclude files with the extension class");
-        }
-        if (output[1].isEmpty()) {
-            throw new IllegalArgumentException("What we archive into");
-        }
-
-        List<Path> paths = Search.search(Paths.get(direct[1]), p -> p.toFile().getName().endsWith(exclude[1]));
+        ArgsName parse = ArgsName.of(args);
+        String direct = parse.get("d");
+        String exclude = parse.get("e");
+        String output = parse.get("o");
+        List<Path> paths = Search.search(Paths.get(direct), p -> !p.toFile().getName().endsWith(exclude));
         Zip zip = new Zip();
-        zip.packFiles(paths, new File(output[1]));
+        zip.packFiles(paths, new File(output));
         zip.packSingleFile(
                 new File("./pom.xml"),
                 new File("./pom.zip")
