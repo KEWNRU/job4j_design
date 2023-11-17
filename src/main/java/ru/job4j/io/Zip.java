@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -36,14 +37,35 @@ public class Zip {
         }
     }
 
+    private static boolean validate(ArgsName argsName) {
+        if (!Files.exists(Paths.get(argsName.get("d")))) {
+            throw new IllegalArgumentException("The specified path does not exist");
+        }
+        if (!Files.isDirectory(Paths.get(argsName.get("d")))) {
+            throw new IllegalArgumentException("The specified path is not a directory");
+        }
+        if (!argsName.get("e").startsWith(".") && argsName.get("e").length() <= 1) {
+            throw new IllegalArgumentException("A file extension specified that does not exist");
+        }
+        if (!argsName.get("o").endsWith(".zip")) {
+            throw new IllegalArgumentException("Invalid archive extension specified");
+        }
+        return true;
+    }
+
+
     public static void main(String[] args) throws IOException {
-        ArgsName parse = ArgsName.of(args);
-        String direct = parse.get("d");
-        String exclude = parse.get("e");
-        String output = parse.get("o");
-        List<Path> paths = Search.search(Paths.get(direct), p -> !p.toFile().getName().endsWith(exclude));
         Zip zip = new Zip();
-        zip.packFiles(paths, new File(output));
+        if (args.length != 3) {
+            throw new IllegalArgumentException("Not all search parameters are specified");
+        }
+        ArgsName argsName = ArgsName.of(args);
+        if (validate(argsName)) {
+            Path start = Paths.get(argsName.get("d"));
+            zip.packFiles(Search.search(start, p -> p.toFile().getName().
+                            endsWith(argsName.get("e"))),
+                    new File(argsName.get("o")));
+        }
         zip.packSingleFile(
                 new File("./pom.xml"),
                 new File("./pom.zip")
