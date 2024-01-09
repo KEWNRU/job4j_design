@@ -17,7 +17,7 @@ public class UsageLog4j {
         char a = 'a';
         long list4 = -2L;
         short list5 = 21;
-        LOG.debug("User info name : {}, age : {}, list : {}, list1 {}, list2 {}, list3 {}, list4 {}, list5 {}, char {}"
-                , name, age, list, list1, list2, list3, list4, list5, a);
+        LOG.debug("User info name : {}, age : {}, list : {}, list1 {}, list2 {}, list3 {}, list4 {}, list5 {}, char {}",
+                name, age, list, list1, list2, list3, list4, list5, a);
     }
 }
