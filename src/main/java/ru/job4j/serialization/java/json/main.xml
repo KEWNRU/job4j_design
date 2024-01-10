@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<employee firstName="Ivan" lastName="Popov" age="26" gamer="true">
+    <statuses>
+        <status>Monday</status>
+        <status>Thursday</status>
+        <status>Saturday</status>
+    </statuses>
+    <info ELO="1100" Rank="LVL5"/>
+</employee>
