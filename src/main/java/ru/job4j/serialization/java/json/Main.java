@@ -7,7 +7,6 @@ public class Main {
     public static void main(String[] args) {
         final Gamer gamer = new Gamer(true, 26, new Rank("level5"),
                 new String[]{"CS2, Faceit, Play"});
-
         final Gson gson = new GsonBuilder().create();
         System.out.println(gson.toJson(gamer));
 
