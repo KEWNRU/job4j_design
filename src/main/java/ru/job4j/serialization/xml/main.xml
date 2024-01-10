@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<gamer game="true" age="26">
+    <rank rank = "lvl5"/>
+    <statuses>
+        <status>CS2</status>
+        <status>Faceit</status>
+        <status>Play</status>
+    </statuses>
+</gamer>
