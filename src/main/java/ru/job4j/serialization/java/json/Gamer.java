@@ -17,11 +17,11 @@ public class Gamer {
 
     @Override
     public String toString() {
-        return "Gamer{" +
-                "game=" + game +
-                ", age=" + age +
-                ", rank=" + rank +
-                ", status=" + Arrays.toString(status) +
-                '}';
+        return "Gamer{"
+                + "game=" + game
+                + ", age=" + age
+                + ", rank=" + rank
+                + ", status=" + Arrays.toString(status)
+                + '}';
     }
 }
