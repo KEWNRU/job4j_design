@@ -24,4 +24,20 @@ public class Gamer {
                 + ", status=" + Arrays.toString(status)
                 + '}';
     }
+
+    public boolean isGame() {
+        return game;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public String[] getStatus() {
+        return status;
+    }
 }

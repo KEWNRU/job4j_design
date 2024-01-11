@@ -15,4 +15,7 @@ public class Rank {
                 + '}';
     }
 
+    public String getRank() {
+        return rank;
+    }
 }
