@@ -1,12 +1,12 @@
 create table roles (
 id serial primary key,
-roles_name text,
+roles_name text
 );
 
 create table users (
 id serial primary key,
-users_name text,
-roles_id int refernces roles(id)
+users_name varchar(255),
+users_id int refernces users(id)
 );
 
 create table rules (
@@ -22,12 +22,12 @@ rules_id int references rules(id)
 
 create table states (
 id serial primary key,
-states_name text,
+states_name text
 );
 
 create table categories (
 id serial primary key,
-categories_name text,
+categories_name text
 );
 
 create table items (
