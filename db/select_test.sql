@@ -6,6 +6,7 @@ create table fauna
     discovery_date date
 );
 
+
 insert into fauna(name, avg_age, discovery_date)
 values ('Bear', 11100, '1111-01-08');
 insert into fauna(name, avg_age, discovery_date)
