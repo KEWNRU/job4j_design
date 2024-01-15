@@ -1,4 +1,4 @@
-insert into users(users_name) VALUES ('Ivan');
+insert into users(users_name, roles_id) VALUES ('Ivan', 1);
 insert into roles(roles_name) VALUES ('ADMIN');
 insert into rules(rules_name) VALUES ('ALL');
 insert into roles_rules(roles_id, rules_id) values (1, 1);
