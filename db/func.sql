@@ -18,7 +18,7 @@ create table devices_people
     people_id int references people (id)
 );
 
-insert into devices(name, price) values ('iphone 15' 150.999);
+insert into devices(name, price) values ('iphone 15', 150.999);
 insert into devices(name, price) values ('samsung s23', 114.999);
 insert into devices(name, price) values ('Motorola g60s', 24.999);
 
