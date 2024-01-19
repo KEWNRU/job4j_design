@@ -6,7 +6,7 @@ roles_name text
 create table users (
 id serial primary key,
 users_name varchar(255),
-roles_id int references users(id)
+roles_id int references roles(id)
 );
 
 create table rules (
